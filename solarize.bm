@@ -1,0 +1,25 @@
+Sub Solarize (__image As Long, __threshold)
+    Dim __Dest As Long
+    Dim __Source As Long
+    Dim __y As Long
+    Dim __x As Long
+    Dim __orgc As _Unsigned Long
+    Dim __r As Integer
+    Dim __g As Integer
+    Dim __b As Integer
+    __Dest = _Dest
+    __Source = _Source
+    _Dest __image
+    _Source __image
+    For __y = 0 To _Height(__image) - 1
+        For __x = 0 To _Width(__image) - 1
+            __orgc = Point(__x, __y)
+            If _Red(__orgc) > __threshold Then __r = 255 - _Red(__orgc) Else __r = _Red(__orgc)
+            If _Green(__orgc) > __threshold Then __g = 255 - _Green(__orgc) Else __g = _Green(__orgc)
+            If _Blue(__orgc) > __threshold Then __b = 255 - _Blue(__orgc) Else __b = _Blue(__orgc)
+            PSet (__x, __y), _RGB32(__r, __g, __b)
+        Next
+    Next
+    _Dest __Dest
+    _Source __Source
+End Sub

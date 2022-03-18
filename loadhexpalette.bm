@@ -1,0 +1,25 @@
+SUB LoadHexPalette (Filename$, palettearray() AS _UNSIGNED LONG)
+    DIM i  AS INTEGER
+    DIM ff AS INTEGER
+    DIM r  AS _UNSIGNED _BYTE
+    DIM g  AS _UNSIGNED _BYTE
+    DIM b  AS _UNSIGNED _BYTE
+    DIM Colorload AS STRING
+    i = LBOUND(palettearray) - 1
+    ff = FREEFILE
+    IF _FILEEXISTS(Filename$) THEN
+        OPEN Filename$ FOR INPUT AS ff
+        DO UNTIL EOF(ff)
+            LINE INPUT #ff, Colorload
+            r = VAL("&H" + MID$(Colorload, 1, 2))
+            g = VAL("&H" + MID$(Colorload, 3, 2))
+            b = VAL("&H" + MID$(Colorload, 5, 2))
+            i = i + 1
+            IF i > UBOUND(palettearray) THEN
+                REDIM _PRESERVE palettearray(i) AS _UNSIGNED LONG
+            END IF
+            palettearray(i) = _RGB32(r, g, b)
+        LOOP
+        CLOSE ff
+    END IF
+END SUB

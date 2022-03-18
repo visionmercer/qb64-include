@@ -1,0 +1,19 @@
+Sub grayscale (image As Long)
+    Dim mimg As _MEM
+    Dim As _Offset start, length
+    Dim As _Unsigned _Byte inputRed, inputGreen, inputBlue, nc
+    mimg   = _MemImage(image)
+    start  = mimg.OFFSET
+    length = start + _Width(image) * _Height(image) * 4
+    Do
+        inputBlue  = _MemGet(mimg, start,     _Unsigned _Byte)
+        inputGreen = _MemGet(mimg, start + 1, _Unsigned _Byte)
+        inputRed   = _MemGet(mimg, start + 2, _Unsigned _Byte)
+        nc = (inputRed * 0.21) + (inputGreen * 0.72) + (inputBlue * 0.07)
+        _MemPut mimg, start,     nc As _Unsigned _Byte
+        _MemPut mimg, start + 1, nc As _Unsigned _Byte
+        _MemPut mimg, start + 2, nc As _Unsigned _Byte
+        start = start + 4
+    Loop Until start = length
+    _MemFree mimg
+End Sub

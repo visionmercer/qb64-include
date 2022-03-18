@@ -1,0 +1,8 @@
+Sub ConsoleColor (Colour As _Unsigned Long)
+    Select Case Colour
+        Case 0 TO 255
+            Print Chr$(27) + "[38;5;" + _Trim$(Str$(Colour)) + "m";
+        Case Is > 255
+            Print Chr$(27) + "[38;2;" + _Trim$(Str$(_Red32(Colour))) + ";" + _Trim$(Str$(_Green32(Colour))) + ";" + _Trim$(Str$(_Blue32(Colour))) + "m";
+    End Select
+End Sub
