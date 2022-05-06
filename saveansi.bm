@@ -1,0 +1,63 @@
+Sub SaveAnsi (Handle As Long, Filename As String)
+    If _PixelSize <> 0 Then Exit Sub      
+    Dim Bold     As _Byte
+    Dim fgc      As _Unsigned _Byte
+    Dim ofgc     As _Unsigned _Byte
+    Dim bgc      As _Unsigned _Byte
+    Dim obgc     As _Unsigned _Byte
+    Dim char     As _Unsigned _Byte
+    Dim Buffer   As String
+    Dim lineout  As String
+    Dim y        As _Unsigned Long
+    Dim x        As _Unsigned Long
+    Dim ff       As Long
+    Dim __source As Long
+    __source = _Source
+    _Source Handle
+    ff = FreeFile
+    Open Filename For Output As ff
+    For y = 1 To _Height
+        For x = 1 To _Width
+            fgc  = Screen(y, x, 1) And 15
+            bgc  = Screen(y, x, 1) \ 16
+            char = Screen(y, x, 0)
+            If fgc <> ofgc Then
+                Buffer = Chr$(27) + "["
+                If Bold = 0 And fgc > 7 Then Buffer = Buffer + "1;": Bold = -1
+                If Bold = -1 And fgc < 8 Then Buffer = Buffer + "0;": Bold = 0
+                Buffer = Buffer + "3" + ansicolor(fgc Mod 8)
+                ofgc = fgc
+            End If
+            If bgc <> obgc Then
+                If Buffer <> "" Then Buffer = Buffer + ";"
+                If Buffer =  "" Then Buffer = Chr$(27) + "["
+                Buffer = Buffer + "4" + ansicolor(bgc)
+                obgc   = bgc
+            End If
+            If Buffer <> "" Then Buffer = Buffer + "m"
+            Buffer  = Buffer + Chr$(char)
+            lineout = lineout + Buffer
+            Buffer  = ""
+        Next
+        If y < _Height Then
+            Print #ff, RTrim$(lineout)
+        Else
+            Print #ff, RTrim$(lineout);
+        End If
+        lineout = ""
+    Next
+    _Source __source
+End Sub
+
+Function ansicolor$ (BasicColor)
+    Select Case BasicColor mod 8
+        Case 0: ansicolor$ = "0"
+        Case 1: ansicolor$ = "4"
+        Case 2: ansicolor$ = "2"
+        Case 3: ansicolor$ = "6"
+        Case 4: ansicolor$ = "1"
+        Case 5: ansicolor$ = "5"
+        Case 6: ansicolor$ = "3"
+        Case 7: ansicolor$ = "7"
+    End Select
+End Function
