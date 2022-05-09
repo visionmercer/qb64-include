@@ -1,8 +1,14 @@
 # qb64-include
 A collection of  functions and sub routines.
 
+## [atob.bm](https://github.com/visionmercer/qb64-include/blob/main/atob.bm)
+ASCII to Base64 encoding
+
 ## [Bool.bi](https://github.com/visionmercer/qb64-include/blob/main/bool.bi)
 A header file containing the constants "False" and "True"
+
+## [btoa.bm](https://github.com/visionmercer/qb64-include/blob/main/btoa.bm)
+Base64 to ASCII decoding
 
 ## [ConsoleColor.bm](https://github.com/visionmercer/qb64-include/blob/main/consolecolor.bm)
 Change color of  terminal text with escape sequences.
