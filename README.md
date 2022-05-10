@@ -38,6 +38,8 @@ Start Windows program with no frame
 ## [SaveAnsi.bm](https://github.com/visionmercer/qb64-include/blob/main/saveansi.bm)
 Save "Screen 0" to an .ans file.
 
+## [SaveHexPalette](https://github.com/visionmercer/qb64-include/blob/main/savehexpalette.bm)
+
 ## [Solarize.bm](https://github.com/visionmercer/qb64-include/blob/main/solarize.bm)
 Solarize image
 
