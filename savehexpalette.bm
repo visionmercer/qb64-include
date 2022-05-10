@@ -1,0 +1,9 @@
+Sub SaveHexPalette (palettearray() As _Unsigned Long, filename As String)
+    ff = FreeFile
+    Open filename For Output As ff
+    For i = 0 To UBound(palettearray)
+        Print #ff, Right$(Hex$(palettearray(i)), 6);
+        If i < UBound(palettearray) Then Print #ff, ""
+    Next i
+    Close ff
+End Sub
