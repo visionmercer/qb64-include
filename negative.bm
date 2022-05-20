@@ -1,25 +1,25 @@
-Sub negative (__image As Long)
-    Dim __dest As Long
-    Dim __source As Long
-    Dim __y As Long
-    Dim __x As Long
-    Dim __orgc As _Unsigned Long
-    Dim __r As Integer
-    Dim __g As Integer
-    Dim __b As Integer
-    __dest = _Dest
-    __source = _Source
-    _Dest __image
-    _Source __image
-    For __y = 0 To _Height(__image) - 1
-        For __x = 0 To _Width(__image) - 1
-            __orgc = Point(__x, __y)
-            __r = 255 - _Red(__orgc)
-            __g = 255 - _Green(__orgc)
-            __b = 255 - _Blue(__orgc)
-            PSet (__x, __y), _RGB32(__r, __g, __b)
+Sub negative (image As Long)
+    Dim olddest As Long
+    Dim oldsource As Long
+    Dim y As Long
+    Dim x As Long
+    Dim orgc As _Unsigned Long
+    Dim r As Integer
+    Dim g As Integer
+    Dim b As Integer
+    olddest = _Dest
+    oldsource = _Source
+    _Dest image
+    _Source image
+    For y = 0 To _Height(image) - 1
+        For x = 0 To _Width(image) - 1
+            orgc = Point(x, y)
+            r = 255 - _Red(orgc)
+            g = 255 - _Green(orgc)
+            b = 255 - _Blue(orgc)
+            PSet (x, y), _RGB32(r, g, b)
         Next
     Next
-    _Dest __dest
-    _Source __source
+    _Dest olddest
+    _Source oldsource
 End Sub
