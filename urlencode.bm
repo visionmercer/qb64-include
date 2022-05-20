@@ -1,0 +1,16 @@
+Function urlencode$ (strng$)
+    Dim buf$, char$
+    For i = 1 To Len(strng$)
+        char$ = Mid$(strng$, i, 1)
+        Select Case Asc(char$)
+		    'Comment out next two lines if space should be %20 instead of +
+			Case 32
+			    buf$ = buf$ + "+"
+            Case 48 TO 57, 65 TO 90, 97 TO 122, 45, 46, 95
+                buf$ = buf$ + char$
+            Case Else
+                buf$ = buf$ + "%" + Hex$(Asc(char$))
+        End Select
+    Next i
+    urlencode$ = buf$
+End Function
