@@ -38,6 +38,9 @@ Start Windows program with no frame
 ## [SaveAnsi.bm](https://github.com/visionmercer/qb64-include/blob/main/saveansi.bm)
 Save "Screen 0" to an .ans file.
 
+## [SaveBinaryPBM.bm](https://github.com/visionmercer/qb64-include/blob/main/savebinarypbm.bm)
+Save a monochrome image to pbm file.
+
 ## [SaveHexPalette](https://github.com/visionmercer/qb64-include/blob/main/savehexpalette.bm)
 Save an array of colors to file
 
