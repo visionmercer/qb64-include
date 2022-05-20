@@ -49,3 +49,6 @@ Solarize image
 
 ## [Truncate.bm](https://github.com/visionmercer/qb64-include/blob/main/truncate.bm)
 Truncate given value to a value between 0 and 255
+
+## [Urlencode.bm](https://github.com/visionmercer/qb64-include/blob/main/urlencode.bm)
+Applies URL encoding to a given string.
