@@ -1,25 +1,25 @@
-Sub Solarize (__image As Long, __threshold)
-    Dim __Dest As Long
-    Dim __Source As Long
-    Dim __y As Long
-    Dim __x As Long
-    Dim __orgc As _Unsigned Long
-    Dim __r As Integer
-    Dim __g As Integer
-    Dim __b As Integer
-    __Dest = _Dest
-    __Source = _Source
-    _Dest __image
-    _Source __image
-    For __y = 0 To _Height(__image) - 1
-        For __x = 0 To _Width(__image) - 1
-            __orgc = Point(__x, __y)
-            If _Red(__orgc) > __threshold Then __r = 255 - _Red(__orgc) Else __r = _Red(__orgc)
-            If _Green(__orgc) > __threshold Then __g = 255 - _Green(__orgc) Else __g = _Green(__orgc)
-            If _Blue(__orgc) > __threshold Then __b = 255 - _Blue(__orgc) Else __b = _Blue(__orgc)
-            PSet (__x, __y), _RGB32(__r, __g, __b)
+Sub Solarize (image As Long, threshold)
+    Dim oldDest As Long
+    Dim oldSource As Long
+    Dim y As Long
+    Dim x As Long
+    Dim orgc As _Unsigned Long
+    Dim r As Integer
+    Dim g As Integer
+    Dim b As Integer
+    oldDest = _Dest
+    oldSource = _Source
+    _Dest image
+    _Source image
+    For y = 0 To _Height(image) - 1
+        For x = 0 To _Width(image) - 1
+            orgc = Point(x, y)
+            If _Red(orgc) > threshold Then r = 255 - _Red(orgc) Else r = _Red(orgc)
+            If _Green(orgc) > threshold Then g = 255 - _Green(orgc) Else g = _Green(orgc)
+            If _Blue(orgc) > threshold Then b = 255 - _Blue(orgc) Else b = _Blue(orgc)
+            PSet (x, y), _RGB32(r, g, b)
         Next
     Next
-    _Dest __Dest
-    _Source __Source
+    _Dest oldDest
+    _Source oldSource
 End Sub
