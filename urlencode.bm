@@ -9,7 +9,7 @@ Function urlencode$ (strng$)
             Case 48 TO 57, 65 TO 90, 97 TO 122, 45, 46, 95
                 buf$ = buf$ + char$
             Case Else
-                buf$ = buf$ + "%" + Hex$(Asc(char$))
+                buf$ = buf$ + "%" + Right$("0" + Hex$(Asc(char$)), 2)
         End Select
     Next i
     urlencode$ = buf$
