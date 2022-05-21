@@ -1,0 +1,16 @@
+Function urldecode$ (strng As String)
+    Dim Tmpstr As String
+    Do Until count >= Len(strng)
+        count = count + 1
+        Select Case Mid$(strng, count, 1)
+            Case "%"
+                Tmpstr = Tmpstr + Chr$(Val("&H" + Mid$(strng, count + 1, 2)))
+                count = count + 2
+            Case "+"
+                Tmpstr = Tmpstr + " "
+            Case Else
+                Tmpstr = Tmpstr + Mid$(strng, count, 1)
+        End Select
+    Loop
+    urldecode = Tmpstr
+End Function
