@@ -42,6 +42,9 @@ Save "Screen 0" to an .ans file.
 Save a monochrome image to pbm file.
 Only works if width is divisible by 8.
 
+## [SaveBinaryPPM.bm](https://github.com/visionmercer/qb64-include/blob/main/savebinaryppm.bm)
+Save a 24 bit image to ppm file.
+
 ## [SaveHexPalette](https://github.com/visionmercer/qb64-include/blob/main/savehexpalette.bm)
 Save an array of colors to file
 
