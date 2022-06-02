@@ -1,0 +1,45 @@
+Sub SaveBinaryPPM (imageHandle As Long, fileName As String)
+    Dim r As _Unsigned _Byte
+    Dim g As _Unsigned _Byte
+    Dim b As _Unsigned _Byte
+    Dim fileHandle As Integer
+    Dim w As _Unsigned Long
+    Dim h As _Unsigned Long
+    Dim head As String
+    Dim fileout As String
+    Dim image As _MEM
+    Dim filebuffer As _MEM
+    Dim inPosition As _Offset
+    Dim outPosition As _Offset
+    Dim length As _Offset
+    image = _MemImage(imageHandle)
+    inPosition = image.OFFSET
+    w = _Width(imageHandle)
+    h = _Height(imageHandle)
+    length = inPosition + w * h * 4
+    head = "P6" + Chr$(10)
+    head = head + "# Created with QB64" + Chr$(10)
+    head = head + LTrim$(Str$(w) + Str$(h)) + Chr$(10)
+    head = head + "255" + Chr$(10)
+    filebuffer = _MemNew(w * h * 3)
+    outPosition = filebuffer.OFFSET
+    Do
+        b = _MemGet(image, inPosition, _Unsigned _Byte)
+        g = _MemGet(image, inPosition + 1, _Unsigned _Byte)
+        r = _MemGet(image, inPosition + 2, _Unsigned _Byte)
+        _MemPut filebuffer, outPosition, r As _UNSIGNED _BYTE
+        _MemPut filebuffer, outPosition + 1, g As _UNSIGNED _BYTE
+        _MemPut filebuffer, outPosition + 2, b As _UNSIGNED _BYTE
+        inPosition = inPosition + 4
+        outPosition = outPosition + 3
+    Loop Until inPosition = length
+    fileout = Space$(w * h * 3)
+    _MemGet filebuffer, filebuffer.OFFSET, fileout
+    fileHandle = FreeFile
+    Open fileName For Binary As fileHandle
+    Put fileHandle, , head
+    Put fileHandle, , fileout
+    Close fileHandle
+    _MemFree image
+    _MemFree filebuffer
+End Sub
