@@ -2,36 +2,35 @@ Sub saveBinaryPBM (handle As Long, filename As String)
     Dim imgwidth As Long
     Dim imgheight As Long
     Dim oldsource As Long
-    Dim fid As String
-    Dim imgdim As String
+    Dim header As String
     Dim y As _Unsigned Long
     Dim x As _Unsigned Long
+    Dim bytecount As _Unsigned Long
     Dim c As _Byte
-
+    Dim outbyte As _Unsigned _Byte
     oldsource = _Source
     _Source handle
     imgwidth = _Width(handle)
     imgheight = _Height(handle)
     Open filename For Binary As #1
-    fid = "P4" + Chr$(10)
-    Put #1, , fid
-    fid = "# Created with QB64" + Chr$(10)
-    Put #1, , fid
-    imgdim = LTrim$(Str$(imgwidth) + Str$(imgheight)) + Chr$(10)
-    Put #1, , imgdim
-    Dim o As _Unsigned _Byte
+    header = "P4" + Chr$(10)
+    header = header + "# Created with QB64" + Chr$(10)
+    header = header + LTrim$(Str$(imgwidth) + Str$(imgheight)) + Chr$(10)
+    Put #1, , header
     For y = 0 To imgheight - 1
         For x = 0 To imgwidth - 1
             c = (Point(x, y) = _RGB(0, 0, 0))
             If c <> 0 Then
-                o = _SetBit(o, 7 - (x Mod 8))
+                outbyte = _SetBit(outbyte, 7 - (bytecount Mod 8))
             Else
-                o = _ResetBit(o, 7 - (x Mod 8))
+                outbyte = _ResetBit(outbyte, 7 - (bytecount Mod 8))
             End If
-            If x Mod 8 = 7 Then
-                Put #1, , o
+            If bytecount Mod 8 = 7 Then
+                Put #1, , outbyte
             End If
+            bytecount = bytecount + 1
         Next
     Next
+    If (imgheight * imgwidth) Mod 8 <> 0 Then Put #1, , outbyte
     Close #1
 End Sub
