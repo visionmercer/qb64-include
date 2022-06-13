@@ -35,4 +35,5 @@ Sub saveBinaryPBM (handle As Long, filename As String)
     Next
     If (imgheight * imgwidth) Mod 8 <> 0 Then Put #1, , outbyte
     Close #ff
+    _Source oldsource
 End Sub
