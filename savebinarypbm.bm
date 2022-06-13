@@ -21,7 +21,7 @@ Sub saveBinaryPBM (handle As Long, filename As String)
     Put #1, , header
     For y = 0 To imgheight - 1
         For x = 0 To imgwidth - 1
-            c = (Point(x, y) = _RGB32(0, 0, 0))
+            c = (Point(x, y) = _RGB(0, 0, 0))
             If c <> 0 Then
                 outbyte = _SetBit(outbyte, 7 - (bytecount Mod 8))
             Else
