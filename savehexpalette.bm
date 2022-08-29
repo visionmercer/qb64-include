@@ -1,9 +1,11 @@
-Sub SaveHexPalette (palettearray() As _Unsigned Long, filename As String)
-    ff = FreeFile
-    Open filename For Output As ff
-    For i = 0 To UBound(palettearray)
-        Print #ff, Right$(Hex$(palettearray(i)), 6);
-        If i < UBound(palettearray) Then Print #ff, ""
-    Next i
-    Close ff
-End Sub
+SUB SaveHexPalette (palettearray() AS _UNSIGNED LONG, filename AS STRING)
+    DIM ff AS LONG
+    DIM i AS LONG
+    ff = FREEFILE
+    OPEN filename FOR OUTPUT AS ff
+    FOR i = 0 TO UBOUND(palettearray)
+        PRINT #ff, RIGHT$(HEX$(palettearray(i)), 6);
+        IF i < UBOUND(palettearray) THEN PRINT #ff, ""
+    NEXT i
+    CLOSE ff
+END SUB
