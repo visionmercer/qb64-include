@@ -1,3 +1,5 @@
+$if btoa = undefined then
+$let btoa = defined
 Function btoa$ (s As String)
     Const B64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
     Dim c1 As _Byte
@@ -17,3 +19,4 @@ Function btoa$ (s As String)
     Next i
     btoa$ = Buffer
 End Function
+$end if

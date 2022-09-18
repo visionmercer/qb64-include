@@ -1,3 +1,5 @@
+$if SaveBinaryPPM = undefined then
+$let SaveBinaryPPM = defined
 Sub SaveBinaryPPM (imageHandle As Long, fileName As String)
     Dim r As _Unsigned _Byte
     Dim g As _Unsigned _Byte
@@ -43,3 +45,4 @@ Sub SaveBinaryPPM (imageHandle As Long, fileName As String)
     _MemFree image
     _MemFree filebuffer
 End Sub
+$end if

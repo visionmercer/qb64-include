@@ -1,3 +1,5 @@
+$if Solarize = undefined then
+$let Solarize = defined
 Sub Solarize (image As Long, threshold)
     Dim oldDest As Long
     Dim oldSource As Long
@@ -23,3 +25,4 @@ Sub Solarize (image As Long, threshold)
     _Dest oldDest
     _Source oldSource
 End Sub
+$end if

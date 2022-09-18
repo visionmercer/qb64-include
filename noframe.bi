@@ -1,3 +1,5 @@
+$if noframe = undefined then
+$let noframe = defined
 Declare Dynamic Library "User32"
     Function GetWindowLongA& (ByVal hWnd As _Offset, Byval nIndex As Long)
     Function SetWindowLongA& (ByVal hWnd As _Offset, Byval nIndex As Long, Byval dwNewLong As Long)
@@ -24,3 +26,4 @@ Style    = (WS_CAPTION Or WS_THICKFRAME Or WS_MINIMIZEBOX Or WS_MAXIMIZEBOX Or W
 
 if Not SetWindowLongA&(hwnd, GWL_STYLE, winstyle And Not Style) Then
 End If
+$end if

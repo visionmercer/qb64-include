@@ -1,3 +1,5 @@
+$if LoadHexPalette = undefined then
+$let LoadHexPalette = defined
 SUB LoadHexPalette (Filename$, palettearray() AS _UNSIGNED LONG)
     DIM i  AS INTEGER
     DIM ff AS INTEGER
@@ -17,3 +19,4 @@ SUB LoadHexPalette (Filename$, palettearray() AS _UNSIGNED LONG)
         CLOSE ff
     END IF
 END SUB
+$end if

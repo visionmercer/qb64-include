@@ -1,3 +1,5 @@
+$if SaveAnsi = undefined then
+$let SaveAnsi = defined
 Sub SaveAnsi (Handle As Long, Filename As String)
     If _PixelSize <> 0 Then Exit Sub      
     Dim Bold     As _Byte
@@ -61,3 +63,4 @@ Function ansicolor$ (BasicColor)
         Case 7: ansicolor$ = "7"
     End Select
 End Function
+$end if

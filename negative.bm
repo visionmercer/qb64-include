@@ -1,3 +1,5 @@
+$if negative = undefined then
+$let negative = defined
 Sub negative (image As Long)
     Dim olddest As Long
     Dim oldsource As Long
@@ -23,3 +25,4 @@ Sub negative (image As Long)
     _Dest olddest
     _Source oldsource
 End Sub
+$end if

@@ -1,3 +1,6 @@
+$if Min = undefined then
+$let Min = defined
 FUNCTION Min (num1, num2)
     Min = ((num1 < num2) * -num1) + ((num2 <= num1) * -num2)
 END FUNCTION
+$end if

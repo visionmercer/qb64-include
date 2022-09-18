@@ -1,3 +1,5 @@
+$if grayscale = undefined then
+$let grayscale = defined
 Sub grayscale (image As Long)
     Dim mimg As _MEM
     Dim As _Offset start, length
@@ -17,3 +19,4 @@ Sub grayscale (image As Long)
     Loop Until start = length
     _MemFree mimg
 End Sub
+$end if

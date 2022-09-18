@@ -1,3 +1,5 @@
+$if urlencode = undefined then
+$let urlencode = defined
 Function urlencode$ (strng$)
     Dim buf$, char$
     For i = 1 To Len(strng$)
@@ -14,3 +16,4 @@ Function urlencode$ (strng$)
     Next i
     urlencode$ = buf$
 End Function
+$end if

@@ -1,3 +1,6 @@
+$if Lerp = undefined then
+$let Lerp = defined
 Function Lerp (v0, v1, t)
     Lerp = (1 - t) * v0 + t * v1
 End Function
+$end if

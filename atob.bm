@@ -1,3 +1,5 @@
+$if atob = undefined then
+$let atob = defined
 Function atob$ (strng As String)
     Const B64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
     Dim c1 As _Unsigned _Byte
@@ -41,3 +43,4 @@ Function atob$ (strng As String)
     Next
     atob$ = Buffer
 End Function
+$end if

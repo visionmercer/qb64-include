@@ -1,3 +1,5 @@
+$if saveBinaryPBM = undefined then
+$let saveBinaryPBM = defined
 Sub saveBinaryPBM (handle As Long, filename As String)
     Dim imgwidth As Long
     Dim imgheight As Long
@@ -37,3 +39,4 @@ Sub saveBinaryPBM (handle As Long, filename As String)
     Close #ff
     _Source oldsource
 End Sub
+$end if

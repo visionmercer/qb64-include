@@ -1,3 +1,5 @@
+$if ConsoleColor = undefined then
+$let ConsoleColor = defined
 Sub ConsoleColor (Colour As _Unsigned Long)
     Select Case Colour
         Case 0 TO 255
@@ -6,3 +8,4 @@ Sub ConsoleColor (Colour As _Unsigned Long)
             Print Chr$(27) + "[38;2;" + _Trim$(Str$(_Red32(Colour))) + ";" + _Trim$(Str$(_Green32(Colour))) + ";" + _Trim$(Str$(_Blue32(Colour))) + "m";
     End Select
 End Sub
+$end if

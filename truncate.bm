@@ -1,3 +1,6 @@
+$if Truncate = undefined then
+$let Truncate = defined
 Function Truncate~%% (value&)
     Truncate~%% = (value& > 0) * (((value& < 256) * value&) + ((value& > 255) * 255))
 End Function
+$end if
