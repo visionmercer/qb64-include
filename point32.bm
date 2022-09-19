@@ -1,0 +1,13 @@
+$if Point32 = undefined then
+$let Point32 = defined
+function Point32~& (x as long, y as long)
+    select case _pixelsize
+    case 1
+        Point32 = _palettecolor(point(x,y), _source)
+    case 4
+        Point32 = point(x, y)
+    case else 
+        Point32 = 0
+    end select
+end function
+$end if
