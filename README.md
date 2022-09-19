@@ -1,5 +1,5 @@
 # qb64-include
-A collection of  functions and sub routines.
+A collection of  functions and subroutines.
 
 ## [atob.bm](https://github.com/visionmercer/qb64-include/blob/main/atob.bm)
 ASCII to Base64 encoding
