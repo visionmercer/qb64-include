@@ -1,5 +1,10 @@
 $if saveBinaryPBM = undefined then
 $let saveBinaryPBM = defined
+' ## Save binary PBM
+' * Syntax: ``SaveBinaryPBM(ImageHandle as Long, Filename As String)``
+' ### Info
+' * Saves any image to Monochrome binary PBM image file.
+' * All colors other than black will be white
 Sub saveBinaryPBM (handle As Long, filename As String)
     Dim imgwidth As Long
     Dim imgheight As Long
