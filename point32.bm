@@ -1,5 +1,9 @@
 $if Point32 = undefined then
 $let Point32 = defined
+' ## Point32
+' - syntax: ``Point32(x, y)``
+' - Returns the 32 bit color value of pixel at x,y in any graphics mode.
+' - Like ``Point``, ``Point32`` samples ``_Source``
 function Point32~& (x as long, y as long)
     select case _pixelsize
     case 1
