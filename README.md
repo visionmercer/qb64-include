@@ -2,17 +2,17 @@
 A collection of  functions and subroutines.
 
 ## [atob.bm](https://github.com/visionmercer/qb64-include/blob/main/atob.bm)
-ASCII to Base64 encoding
+Base64 ASCII to Binary encoding
 
 ## [Bool.bi](https://github.com/visionmercer/qb64-include/blob/main/bool.bi)
 A header file containing the constants "False" and "True"
 
 ## [btoa.bm](https://github.com/visionmercer/qb64-include/blob/main/btoa.bm)
-Base64 to ASCII decoding
+Binary to Base64 ASCII encoding
 
 ## [ConsoleColor.bm](https://github.com/visionmercer/qb64-include/blob/main/consolecolor.bm)
 Change color of  terminal text with escape sequences.
-If terminal emulator supports it, true color is possible.
+If terminal emulator supports it then true color is possible.
 
 ## [Grayscale.bm](https://github.com/visionmercer/qb64-include/blob/main/grayscale.bm)
 Convert an image to grayscale.
@@ -34,6 +34,9 @@ Convert an image to the negative color.
 
 ## [NoFrame.bi](https://github.com/visionmercer/qb64-include/blob/main/noframe.bi)
 Start Windows program with no frame
+
+## [Point32]((https://github.com/visionmercer/qb64-include/blob/main/point32.bm)
+Returns the 32 bit color value no matter the image mode.
 
 ## [SaveAnsi.bm](https://github.com/visionmercer/qb64-include/blob/main/saveansi.bm)
 Save "Screen 0" to an .ans file.
