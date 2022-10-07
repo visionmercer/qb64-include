@@ -1,46 +1,23 @@
 $if atob = undefined then
 $let atob = defined
-Function atob$ (strng As String)
-    Const B64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
-    Dim c1 As _Unsigned _Byte
-    Dim c2 As _Unsigned _Byte
-    Dim c3 As _Unsigned _Byte
-    Dim t1 As _Unsigned _Byte
-    Dim t2 As _Unsigned _Byte
-    Dim t3 As _Unsigned _Byte
-    Dim t4 As _Unsigned _Byte
-    Dim i As Long
-    Dim Buffer As String
 
-    For i = 1 To Len(strng) Step 3
-        c1 = Asc(Mid$(strng, i, 1))
-        t1 = _SHR((c1), 2)
-        Buffer = Buffer + Mid$(B64, t1 + 1, 1)
-        If Len(strng) >= i + 1 Then
-            c2 = Asc(Mid$(strng, i + 1, 1))
-            t2 = (_SHL((c1 And &B00000011), 4)) Or (_SHR((c2), 4))
-            Buffer = Buffer + Mid$(B64, t2 + 1, 1)
-        Else
-            t2 = (_SHL((c1 And &B00000011), 4))
-            Buffer = Buffer + Mid$(B64, t2 + 1, 1)
-            Buffer = Buffer + "=="
-            atob$ = Buffer
-            Exit Function
-        End If
-        If Len(strng) >= i + 2 Then
-            c3 = Asc(Mid$(strng, i + 2, 1))
-            t3 = (_SHL((c2 And &B00001111), 2)) Or (_SHR((c3), 6))
-            Buffer = Buffer + Mid$(B64, t3 + 1, 1)
-            t4 = c3 And &B00111111
-            Buffer = Buffer + Mid$(B64, t4 + 1, 1)
-        Else
-            t3 = (_SHL((c2 And &B00001111), 2))
-            Buffer = Buffer + Mid$(B64, t3 + 1, 1)
-            Buffer = Buffer + "="
-            atob$ = Buffer
-            Exit Function
-        End If
-    Next
+Function atob$ (s As String)
+    Const B64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
+    Dim c1 As _Byte
+    Dim c2 As _Byte
+    Dim c3 As _Byte
+    Dim c4 As _Byte
+    Dim i As Long
+    Dim As String Buffer
+    For i = 1 To Len(s) Step 4
+        c1 = InStr(B64, Mid$(s, i + 0, 1)) - 1
+        c2 = InStr(B64, Mid$(s, i + 1, 1)) - 1
+        c3 = InStr(B64, Mid$(s, i + 2, 1)) - 1
+        c4 = InStr(B64, Mid$(s, i + 3, 1)) - 1
+        If c2 > -1 Then Buffer = Buffer + Chr$(((c1 * 4 + c2 \ 16) And 255))
+        If c3 > -1 Then Buffer = Buffer + Chr$(((c2 * 16 + c3 \ 4) And 255))
+        If c4 > -1 Then Buffer = Buffer + Chr$(((c3 * 64 + c4) And 255))
+    Next i
     atob$ = Buffer
 End Function
 $end if
