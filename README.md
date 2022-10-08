@@ -35,7 +35,7 @@ Convert an image to the negative color.
 ## [NoFrame.bi](https://github.com/visionmercer/qb64-include/blob/main/noframe.bi)
 Start Windows program with no frame
 
-## [Point32](https://github.com/visionmercer/qb64-include/blob/main/point32.bm)
+## [Point32.bm](https://github.com/visionmercer/qb64-include/blob/main/point32.bm)
 Returns the 32 bit color value no matter the image mode.
 
 ## [SaveAnsi.bm](https://github.com/visionmercer/qb64-include/blob/main/saveansi.bm)
