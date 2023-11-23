@@ -12,8 +12,8 @@ Function hsb~& (huein As Integer, satin As Integer, brightin As Integer)
     bright = brightin / 100
     If sat > 1 Then s = 1
     If bright > 1 Then b = 1
-    If bright <= 0 Then hsb32 = _RGB(0, 0, 0): Exit Function
-    If sat <= 0 Then hsb32 = _RGB(b * 255, b * 255, b * 255): Exit Function
+    If bright <= 0 Then hsb = _RGB(0, 0, 0): Exit Function
+    If sat <= 0 Then hsb = _RGB(b * 255, b * 255, b * 255): Exit Function
     If (hue >= 0) And (hue < 120) Then
         hueprimary = 1 - (hue / 120)
         huesecondary = hue / 120
