@@ -1,0 +1,49 @@
+$If HSB32 = UNDEFINED Then
+$Let HSB32 = DEFINED
+
+Function hsb32~& (huein As Integer, satin As Integer, brightin As Integer)
+    Dim hue, sat, bright
+    Dim redout, greenout, blueout
+    Dim hueprimary, huesecondary
+    Dim satprimary, satsecondary, sattertiary
+    hue = huein Mod 360
+    If hue < 0 Then hue = hue + 360
+    sat = satin / 100
+    bright = brightin / 100
+    If sat > 1 Then s = 1
+    If bright > 1 Then b = 1
+    If bright <= 0 Then hsb32 = _RGB32(0): Exit Function
+    If sat <= 0 Then hsb32 = _RGB32(b * 255): Exit Function
+    If (hue >= 0) And (hue < 120) Then
+        hueprimary = 1 - (hue / 120)
+        huesecondary = hue / 120
+        satprimary = (1 - hueprimary) * (1 - sat)
+        satsecondary = (1 - huesecondary) * (1 - sat)
+        sattertiary = 1 - sat
+        redout = (bright * 255) * (hueprimary + satprimary)
+        greenout = (bright * 255) * (huesecondary + satsecondary)
+        blueout = (bright * 255) * sattertiary
+    ElseIf (hue >= 120) And (hue < 240) Then
+        hueprimary = 1 - ((hue - 120) / 120)
+        huesecondary = (hue - 120) / 120
+        satprimary = (1 - hueprimary) * (1 - sat)
+        satsecondary = (1 - huesecondary) * (1 - sat)
+        sattertiary = 1 - sat
+        redout = (bright * 255) * sattertiary
+        greenout = (bright * 255) * (hueprimary + satprimary)
+        blueout = (bright * 255) * (huesecondary + satsecondary)
+    ElseIf (hue >= 240) And (hue <= 360) Then
+        hueprimary = 1 - ((hue - 240) / 120)
+        huesecondary = (hue - 240) / 120
+        satprimary = (1 - hueprimary) * (1 - sat)
+        satsecondary = (1 - huesecondary) * (1 - sat)
+        sattertiary = 1 - sat
+        redout = (bright * 255) * (huesecondary + satsecondary)
+        greenout = (bright * 255) * sattertiary
+        blueout = (bright * 255) * (hueprimary + satprimary)
+    End If
+    hsb32 = _RGB32(redout, greenout, blueout)
+End Function
+
+$End If
+
